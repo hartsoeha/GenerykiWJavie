@@ -2,7 +2,7 @@ package warsztatywprowadzajace;
 
 
 /**
- * <h1>Typy ograniczone!</h1>
+ * <h1>Typy ograniczone.</h1>
  * <p>
  * Mamy takie klasy:
  * <ul>
@@ -10,21 +10,24 @@ package warsztatywprowadzajace;
  *     <li>ElvisPresley</li>
  * </ul>
  * Niektórzy twierdzą, że Elvis nadal żyje, ponieważ został sklonowany.
- * <p><i>// Im mniej o tym myślisz tym bardziej logiczne się to wydaje.</i></p>
  * <p>
- * Zatem sprawimy, że nasza klasa ElvisPresley również będzie Klonowable.
- * <p>
- * <b>Ważna notka:</b>
+ * Zatem sprawimy, że nasza klasa ElvisPresley również będzie Klonable.
+ * <p><br/>
+ * <b>Ważna notka:</b><br/>
  * Proszę nie modyfikuj żadnych klas ani interfejsów, chyba że dalsze polecenia stanowią inaczej.
- * <p>
- * Zapoznaj się z interfejsem Klonowable, klasami Wokalista i ElvisPresley, oraz metodą 'main'.
+ * <br/><br/>
+ * <b>Ważna notka 2:</b>
+ * Wiem, że niektórzy czują potrzebę zamiany nazwy 'Klonable' na 'Cloneable' i 'klonuj' na 'clone'.
+ * Nie rób tego albo doprowadzisz do błędu kompilacji.
+ * <p><br/>
+ * Zapoznaj się z interfejsem Klonable, klasami Wokalista i ElvisPresley, oraz metodą 'main'.
  * W 'main' wywołana jest metoda 'klonujWokalistę' -> zaimplementuj ją zgodnie z instrukcjami.
  *
  * @author Wojciech Makiela
  */
 public class Zadanie4 {
 
-    interface Klonowable<T> {
+    interface Klonable<T> {
         T klonuj();
     }
 
@@ -32,7 +35,7 @@ public class Zadanie4 {
         // Nie ruszać!
     }
 
-    static class ElvisPresley extends Wokalista implements Klonowable<ElvisPresley> {
+    static class ElvisPresley extends Wokalista implements Klonable<ElvisPresley> {
         // Nie ruszać!
         @Override
         public ElvisPresley klonuj() {
@@ -51,51 +54,52 @@ public class Zadanie4 {
         System.out.println(klonujWokalistę(new ElvisPresley()));
     }
 
-    private static Klonowable klonujWokalistę(Klonowable klonowable) {
-        return (Klonowable) klonowable.klonuj();
+    private static Klonable klonujWokalistę(Klonable klonable) {
+        return (Klonable) klonable.klonuj();
         /*
         Popatrz na to rzutowanie. Po kiego grzyba ono tu jest?
         Jak je usuniesz, to dostaniesz błąd. Zrób to, i przeczytaj opis błędu.
 
-        Metoda 'klonuj' zwraca Object, a nie Klonowable. No i w sumie to ma to sens.
-        Jak zerkniesz na interfejs Klonowable to zobaczysz typ zwrotny 'T', którym może być cokolwiek.
+        Metoda 'klonuj' zwraca Object, a nie Klonable. No i w sumie to ma to sens.
+        Jak zerkniesz na interfejs Klonable to zobaczysz typ zwrotny 'T', którym może być cokolwiek.
         W poprzednim zadaniu dowiedziałeś się, że w trakcie kompilacji typy generyczne zastępowane
         są obiektami (Object). I ma to sens. Wszak (prawie) wszystko w Javie jest obiektem, więc i nasz
         typ zwrotny 'T' jest traktowany jak obiekt.
 
-        Jeśli pomyślimy chwilę nad klonowaniem, to możemy dojść do (szalonego) wniosku:
+        Ograniczenie typów generycznych:
+        Jeżeli Elvisa dało się sklonować, to tego klona też powinno się dać.
 
-            Jeżeli Elvisa dało się sklonować, to tego klona też powinno się dać.
+        Tymczasem nasz Elvis może implementować interfejs Klonable<String> i dalej będzie to działało,
+        choć nie będzie zbyt logiczne. Możesz to naprawić słówkiem kluczowym 'extends'.
 
-        Tymczasem nasz Elvis może implementować interfejs Klonowable<String> i dalej będzie to działało,
-        choć nie będzie zbyt logiczne. Jeśli mi nie ufasz to sprawdź. Jeśli mi ufasz, to coś z tobą nie tak.
+        Jeśli zmienisz deklarację interfejsu Klonable<T> na 'Klonable<T extends Klonable>'
+        sprawisz, że implementowanie Klonable<String> (String, lub czegokolwiek co nie implementuje Klonable) nie
+        będzie możliwe.
 
-        Możesz to naprawić słówkiem kluczowym 'extends'.
-
-        Jeśli zmienisz deklarację interfejsu Klonowable<T> na 'Klonowable<T extends Klonowable>'
-        sprawisz, że implementowanie Klonowable<String> nie będzie możliwe.
-        (właściwie Klonowable<cokolwiekCoNieImplementujeKlonowable> nie zadziała)
         Ważna notka - przy generykach używamy tylko słówka 'extends', nigdy 'implements', niezależnie czy mówimy
         o klasach, czy interfejsach.
 
         Jeśli już poprawiłeś interfejs, to czytaj dalej.
 
+        Na moment zostawisz metodę `klonujWokalistę`, aby poznać parametryzowane metody. Wiedza ta będzie Ci potrzebna
+        do finalnego uprzątnięcia `klonujWokalistę`.
         Poniżej znajdziesz przykład parametryzowanej metody 'returnT(T t)'.
-        Do tej pory w metodach używałeś tylko typów generycznych klasy w której się znajdują (np getter do pola typu T
-        z zadania 2).
+        Używałeś już typów generycznych klasy w której się znajdują (np getter do pola typu T z zadania 2).
         Istnieje jednak możliwość deklarowania generyków dla pojedynczej metody.
         Robimy to podobnie jak w przypadku klas -> w nawiasach ostrych podajemy nazwę naszego typu.
         Nasz zapis '<T>' musi pojawić się w deklaracji metody zaraz przed typem zwrotnym.
+        Zerknij na 'returnT(T t)', a potem czytaj dalej.
 
-        Dobrze. Posiadasz już wiedzę na temat ograniczeń i definicji generyków w metodzie.
-        Użyj tej wiedzy, by finalnie naprawić metodę 'klonujWokalistę'.
 
-        Co jeszcze nie działa?
+        Co jeszcze nie działa w `klonujWokalistę`?
 
-        Nasza metoda przyjmuje dowonle obiekty które są Klonowable, nawet jeśli nie są wokalistami, i to jest problem.
-        'klonujWokalistę' powinno przyjmować Wokalistów którzy są Klonowable.
-        Aby narzucić więcej niż jedno ograniczenie, jak to robiłeś do tej pory, musisz użyć symbolu '&'.
-        Przykładowo: <T extends Object & Serializable>
+        Nasza metoda przyjmuje dowonle obiekty które są Klonable, nawet jeśli nie są wokalistami, i to jest problem.
+        'klonujWokalistę' powinno przyjmować Wokalistów którzy są Klonable. Wykorzystaj wiedzę o parametryzowaniu metod
+        i narzuć ograniczenie na typ generyczny. Aby ograniczyć się więcej niż jednym rodzicem musisz użyć symbolu '&'.
+        Przykładowo: <T extends Person & Serializable>
+        Ważna jest tutaj kolejność. Każda klasa może rozszerzać 1 klasę i dowolną ilość interfejsów. Tym tytułem
+        ograniczenia generyków zaczynamy od klasy (T extends Person), a dopiero potem dopisujemy implementowane
+        interfejsy (& Serializable).
 
         */
     }
