@@ -1,22 +1,21 @@
 package warsztatywprowadzajace;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * <h1>Dziedziczenie a generyki!</h1>
- * <p>
- * Koniec z klonowaniem. Wokalistów i tak jest za dużo.
- * Ale co z nimi zrobić? Może by ich tak <i>sys.outnąć</i>?
- * <p>
+ * <h1>Dziedziczenie a generyki.</h1>
+ *
+ * Zapoznaj się z kodem zgodnie z kolejnością zapisu.
  *
  * @author Wojciech Makiela
  */
 public class Zadanie5 {
 
     static class Wokalista {
-        private String gatunekMuzyczny;
+        private final String gatunekMuzyczny;
 
         Wokalista(String gatunekMuzyczny) {
             this.gatunekMuzyczny = gatunekMuzyczny;
@@ -53,9 +52,9 @@ public class Zadanie5 {
 //        wyświetlWokalistów(listaZPresleyem);
 
         /*
-        No to co. Mamy listę jakichś wokalistów. Wrzucamy ją do 'wyświetlWokalistów' i wszystko fajnie działa.
-        Robimy sobie listę Elvisów i próbujemy wyświetlić ich (odkomentowanie
-        linijki 'wyświetlWokalistów(listaZPresleyem);'). No i przypał. Błąd kompilacji.
+        Masz listę jakichś wokalistów. Wrzucasz ją do 'wyświetlWokalistów' i wszystko działa.
+        Masz listę Elvisów i próbujemy wyświetlić ich poprzez odkomentowanie linijki:
+        wyświetlWokalistów(listaZPresleyem);
 
         W obu przypadkach jest taka sama lista. Różnią się tylko typem parametru. Jeśli zmienimy typ listyZPresleyem
         na List<Wokalista>, to będzie działać. Tylko dlaczego List<ElvisPresley> nie jest podtypem List<Wokalista>?
@@ -64,27 +63,23 @@ public class Zadanie5 {
             List<Integer> ints = Arrays.asList(1, 2); // Robimy listę Integerów
             List<Number> nums = ints;                 // Tutaj jest błąd kompilacji, ale teraz go ignorujemy.
             nums.add(3.14);                           // Double rozszerza Number, więc da się dodać.
-            ints.toString().equals("1, 2, 3.14");     // MamyPrzypałException! Double w liście Integerów
+            ints.toString().equals("1, 2, 3.14");     // Double w liście Integerów
 
         Przypisanie listy Integerów do zmiennej typu List<Number> powoduje błąd kompilacji, ponieważ może to
         doprowadzić do zepsucia pierwszej listy (Double w liście Integerów).
+        Patrząc na to z perspektywy hierarchi dziedziczenia: List<Number> i List<Integer> są rodzeństwem, o wspólnym
+        rodzicu - klasie Object.
 
-        W tym przykładzie rodzicem List<Number> i List<Integer> jest Object - są rodzeństwem, a jak zapewne wiesz
-        zmienną 'A' można przypisać do zmiennej typu 'B' tylko i wyłącznie gdy 'A' jest dzieckiem 'B'.
 
+        Aby to osiągnąć większą elastyczność - możliwość przekazania do metody `wyświetlWokalistów` dowolnej
+        listy - użyjemy symbolu nieoznaczonego (ang. "wildcard") reprezentowanego znakiem zapytania. Zacznij od zmany
+        deklaracji metody `wyświetlWokalistów`.
 
-        No. To skoro już masz śladowe pojęcie na temat dziedziczenia przy generykach, to naprawisz 'wyświetlWokalistów'.
-        Chcemy, by przyjmowała dowolną listę Wokalistów.
-        Aby to osiągnąć użyjemy symbolu nieoznaczonego (ang. "wildcard"). Zacznijmy od zmany deklaracji naszej metody.
+        private static void wyświetlWokalistów(List<?> wokaliści)
 
-            private static void wyświetlWokalistów(List<?> wokaliści)
-
-        Jeśli pierwszy raz widzisz ten zapis, może on się wydawać "jakiś dziwny", ale to prawidłowa składnia Javy.
-        Kopiuj-wklej i się przekonaj.
-
-        Wildcard reprezentuje nieznany / dowolny typ. Zostawiony sam sobie (bez żadnych ograniczeń) symbolizuje Object.
-        Nie do końca to co chcieliśmy, więc po raz kolejny dzięki słówku 'extends' uratujemy świat!
-        // Nie modyfikuj zawartości metody 'wyświetlWokalistów', tylko jej deklarację.
+        Wildcard reprezentuje nieznany/dowolny typ. Zostawiony sam sobie (bez żadnych ograniczeń) symbolizuje Object.
+        Twoim zadaniem jest nanieść takie ograniczenie, że do `wyświetlWokalistów` przekazać będzie można tylko listy
+        obiektów typu `Wokalista`, lub dowolnego podtypu tejże klasy.
          */
     }
 }
