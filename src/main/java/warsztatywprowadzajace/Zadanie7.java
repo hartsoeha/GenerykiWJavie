@@ -1,15 +1,15 @@
 package warsztatywprowadzajace;
 
 /**
- * <h1>Teścik!</h1>
+ * <h1>Test!</h1>
  * <p>
- * Poniżej znajdziesz zestaw 8 pytań które wyłowiłem z odmętów internetu.
- * Większość trudności tych pytań kryje się w anglojęzycznym słownictwie, lub trudności
- * przewidzenia jak zadziała wymazywanie typów. Mają one pokazać Ci nad czym pracować,
- * więc jeśli nie wiesz - głowa do góry - tak miało być!
+ * Poniżej znajdziesz zestaw 8 pytań rekrutacyjnych o generyki w Javie.
+ * Większość trudności tych pytań kryje się w anglojęzycznym słownictwie i trudności
+ * przewidzenia jak zadziała wymazywanie typów.
+ * Celem tego testu jest pokazanie Ci nad czym pracować.
  * <p>
- * Udziel odpowiedzi, a potem sprawdź w poprzednich zadaniach, lub zgooglaj.
- * Im więcej pracy włożysz w znalezienie odpowiedzi, tym większa szansa, że ją zapamiętasz ;)
+ * Udziel odpowiedzi, a potem je sprawdź. Rozwiązań szukaj w poprzednich zadaniach lub internecie.
+ * Im więcej pracy włożysz w znalezienie odpowiedzi, tym większa szansa, że ją zapamiętasz :)
  */
 public class Zadanie7 {
     /*
