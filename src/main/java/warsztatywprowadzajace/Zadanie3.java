@@ -3,8 +3,8 @@ package warsztatywprowadzajace;
 /**
  * <h1>Podsumowanie Zadania1:</h1>
  * <p>
- * Jak widziałeś, używanie generyków pozwala kompilatorowi na sprawdzanie elementów przy dodawaniu
- * zmniejszając szanse na {@link ClassCastException}, oraz redukuje konieczność ręcznego rzutowania.
+ * Jak widziałeś, używanie generyków pozwala kompilatorowi na sprawdzanie typów zmiennych zmniejszając szanse na {@link
+ * ClassCastException}, oraz redukuje konieczność ręcznego rzutowania.
  * <p><br/>
  * <p>Inną zaletą generyków jest ograniczenie powtórzeń kodu.</p>
  * Bez generyków byliśmy zmuszeni do duplikowania kodu dla różnych typów, lub używania {@link Object} jako typu
@@ -12,11 +12,11 @@ package warsztatywprowadzajace;
  * <p><br/>
  * <h1>Podsumowanie Zadania2:</h1>
  * <p>
- * Napisałeś kilka parametryzowanych klas i metod.
- * Dowiedziałeś się również, że nie możesz stworzyć tablicy typu generycznego, ponieważ
- * w Runtimie nie możesz dokładnie określić typu... Ale w sumie dlaczego?
+ * Napisałeś kilka parametryzowanych klas i metod. Dowiedziałeś się również, że nie możesz stworzyć tablicy typu
+ * generycznego, ponieważ w Runtimie nie możesz dokładnie określić typu... Ale w sumie dlaczego?
  * <p>
- * <h2>Czas na wymazywanie typów!</h2>
+ * <br/> <br/>
+ * <h2>Wprowadzenie do wymazywania typów.</h2>
  *
  * @author Wojciech Makiela
  */
@@ -24,17 +24,13 @@ public class Zadanie3 {
 
     public static void main(String[] args) {
         /*
-        W ramach pierwszego zadania napisałeś kod działający w Javie 1.4.
-        Po przekopiowaniu do tego repo (gdzie pracujemy na nowszej Javie) kod dalej działał.
-        To dzięki kompatybilności wstecznej.
 
         Żeby skutecznie pracować z generykami należy zrozumieć, że informacja o typach parametryzowanych jest
         dostępna tylko dla kompilatora - wirtualna maszyna Javy nie ma dostępu do tej informacji.
         Innymi słowy, wymazywanie typów (ang. "type erasure") oznacza, że informacje o generykach nie są dostępne
         podczas działania programu (Runtime), ponieważ zostały usunięte podczas kompilacji.
 
-        Jaki jest sens wymazywania typów?
-        Odpowiedź jest prosta - by zachować kompatybilność wsteczną.
+        Dlaczego typy są wymazywane? - by zachować kompatybilność wsteczną.
         Przed wprowadzeniem generyków kolekcje używały obiektów (Object). Po wprowadzeniu generyków pojawił się problem.
         Potrzebne było rozwiązanie, które po skompilowaniu (w postaci bytecodu) będzie wyglądać tak samo
         zarówno z, jak i bez generyków.
