@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * <h1>Typy ograniczone! Część 2!</h1>
+ * <h1>Typy ograniczone - część 2.</h1>
  * <p>
- * Ograniczałeś już generyki od góry. Fajnie.
- * Ale czy wiedziałeś, że można je również ograniczyć od dołu?
+ * Zapoznaj się z kodem zgodnie z kolejnością zapisu.
  *
  * @author Wojciech Makiela
  */
@@ -45,89 +44,44 @@ public class Zadanie6 {
     }
 
     public static void main(String[] args) {
-
-        /*
-        Wcześniej napisałeś metodę, która wyświetla wokalistów.
-        Zamiast tego użyjmy konsumenta - pozwoli nam to na polimorfizm zachowań!
-         */
-
         Consumer<Wokalista> zamieńNaGwiazdęKPopu = wokalista -> wokalista.gatunekMuzyczny = "KPop";
         List<Wokalista> wokaliści = Arrays.asList(new ElvisPresley());
         róbCośZWokalistami(wokaliści, zamieńNaGwiazdęKPopu);
-        System.out.println(wokaliści.get(0).gatunekMuzyczny); // Elvis jest teraz gwazdą KPop! Oh no!
-
-        /*
-        Szybkie przypomnienie czym jest konsument.
-        Interfejs funkcyjny -> przyjmuje pewien parametr (w tym przypadku Wokalista) i go obrabia w pewien sposób.
-         */
+        System.out.println(wokaliści.get(0).gatunekMuzyczny); // Elvis jest teraz gwazdą KPop.
 
         // No ale jest problem. Oczywiście, że jest jakiś problem...
         Consumer<Object> print = System.out::println;
-//        róbCośZWokalistami(wokaliści, print); // Błąd kompilacji - odkomentuj i się przekonaj!
+        //        róbCośZWokalistami(wokaliści, print); // Błąd kompilacji.
 
         /*
+        Metoda `róbCośZWokalistami` przyjmuje konsumenta wokalistów, a nie konsumenta obiektów.
 
-        Dobrze wiem, że wokalistę da się sys.outnąć.
-        Ty też to wiesz.
-        Ale kompilator niestety nie. A przynajmniej tak to wygląda.
+        Proste zdefiniowanie konsumenta jako Consumer<Wokalista> mówi kompilatorowi, że interesują nas tylko i
+        wyłącznie instancje klasy `Wokalista` => 1 konkretna klasa z drzewa dziedziczenia.
 
-        Nasza metoda przyjmuje konsumenta wokalistów (dalej zwany kanibalem), a nie konsumenta obiektów.
-        I co tu zrobić?
-        <T extends Wokalista>?
-        Może <?> ?
-        Cholibka. Nie działa. Co tu zrobić... wcale nie przeczytałeś dokumentacji na samej górze, i nie wiesz
-        że będziemy tu ograniczać generyki od dołu...
+        Zdefiniowanie konsumenta jako Consumer<? extends Wokalista> informuje kompilator, że konsument obsłuży
+        instancję dowolnej podklasy klasy `Wokalista` jak i instancje samej klasy `Wokalista` (ograniczamy typ od
+        góry) => Wszystko co JEST `Wokalistą`, jest ok.
 
-        Użycie 'extends' daje znać, że poszukujemy podklasy Wokalisty, ale w tym przypadku nie potrzebujemy podklasy.
-        Potrzebujemy nadklasy!
-
-        Do tej pory używałeś wyłącznie 'extends' - definicji górnej granicy parametru.
-        Innymi słowy wskazywałeś najwyższą (na drzewie dziedziczenia) dopuszczalną klasę.
-
-            Object
-               |
-            Wokalista
-               |
-          ElvisPresley
-
-        <T extends Wokalista> mówi, że możemy użyć Wokalisty, lub czegokolwiek pod nim na drzewie.
-
-        W tym przypadku jednak chcemy Wokalistę, lub cokolwiek powyżej - zdefiniować dolną granicę.
-        By to zrobić używamy słowa kluczowego 'super'.
+        Istnieje również opcja ograniczenia typu od dołu. By to zrobić używamy słowa kluczowego 'super'.
         Przykład:
-            Poniżej znajdziesz metodę 'demo', która przyjmuje parametr typu List<? super Integer>.
-            Przeanalizujmy ten zapis
 
-                List        - Przyjmujemy jakiś obiekt implementujący interfejs List.
-                <?          - Będzie ona przechowywać dowolne obiekty...
-                super       - ... będące nadklasą...
-                Integer>    - klasy Integer.
+            private static void printAList(List<? super Integer> list) {
+                for (Object o : list) {
+                    System.out.print(o);
+                    System.out.print(", ");
+                }
+                System.out.println();
+            }
 
-            Wywołania metody 'demo' są zakomentowane tylko po to, by nie rozpraszać Cię podczas pierwszej części.
-            Odkomentuj je teraz i zobacz, że nasza metoda przyjmuje List<Integer>, List<Number>, oraz List<Object>.
+        Analiza zapisu:
+            List        - Metoda przyjmuje jakąś listę.
+            <?          - Lista ta będzie przechowywać dowolne obiekty...
+            super       - ... będące nadklasą...
+            Integer>    - klasy Integer.
+
+        Wzorując się na metodzie `printAList` popraw deklarację metody `róbCośZWokalistami` tak, by przekazanie
+        konsumenta obiektów nie skutkowało błędem kompilacji.
          */
-
-        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
-        demo(integers);
-
-        List<Number> numbers = new ArrayList<>(integers);
-        numbers.add(3.14);
-        demo(numbers);
-
-        List<Object> objects = new ArrayList<>(numbers);
-        objects.add(new Object());
-        demo(objects);
-
-
-        // Jak już przeanalizujesz co tu się odprzedsięwziewa, popraw metodę 'róbCośZWokalistami' tak,
-        // by przyjmowała zarówno kanibala, jak i konsumenta obiektów.
-    }
-
-    private static void demo(List<? super Integer> list) {
-        for (Object o : list) {
-            System.out.print(o);
-            System.out.print(", ");
-        }
-        System.out.println();
     }
 }
