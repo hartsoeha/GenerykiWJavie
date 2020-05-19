@@ -9,10 +9,7 @@
  * <i>z</i><b>n</b><em>a</em><sub>c</sub><sup>z</sup><small>n</small><ins>i</ins><sub>k</sub><sup>i</sup> HTML.
  * By dobrze je wyświetlić kliknij ['Ctrl' + 'q'] dwukrotnie.
  * <p><br/>
- * Będziesz musiał stworzyć sobie również pomocniczy projekt, w którym użyjesz Java1.4.
- * Możesz go przygotować od razu ;)
- * <p><br/>
- * Zadania robić po kolei - są ponumerowane. Nie zgubisz się ;)
+ * Zadania wykonuj zgodnie z numeracją.
  *
  * @author Wojciech Makiela
  */
