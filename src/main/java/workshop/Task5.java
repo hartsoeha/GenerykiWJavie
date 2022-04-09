@@ -38,7 +38,7 @@ public class Task5 {
         }
     }
 
-    private static void workWithSingers(List<Singer> singers) {
+    private static void workWithSingers(List<? extends Singer> singers) {
         for (Singer singer : singers) {
             System.out.println(singer);
         }

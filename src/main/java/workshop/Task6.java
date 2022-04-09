@@ -41,7 +41,7 @@ public class Task6 {
 
     }
 
-    private static void workWithSingers(List<? extends Singer> singers, Consumer<Singer> consumer) {
+    private static void workWithSingers(List<? extends Singer> singers, Consumer<? super Singer> consumer) {
         for (Singer singer : singers) {
             consumer.accept(singer);
         }

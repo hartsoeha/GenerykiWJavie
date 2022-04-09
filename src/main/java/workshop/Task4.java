@@ -1,6 +1,8 @@
 package workshop;
 
 
+import java.sql.Clob;
+
 /**
  * Bounded Parameters!
  * <p>
@@ -19,7 +21,7 @@ package workshop;
  */
 public class Task4 {
 
-    interface Cloneable<T> {
+    interface Cloneable<T extends Cloneable> {
         T createClone();
     }
     static class Singer {
@@ -28,17 +30,19 @@ public class Task4 {
 
         @Override
         public ElvisPresley createClone() {
+            System.out.println("New Elvis Created!");
             return new ElvisPresley();
         }
     }
 
     public static void main(String[] args) {
         // Use main method for tests
-        cloneSinger(new ElvisPresley());
+        System.out.println(cloneSinger(new ElvisPresley()));
     }
 
-    private static Cloneable cloneSinger(Cloneable cloneable) {
-        return (Cloneable) cloneable.createClone();
+    private static <T extends Singer & Cloneable> Cloneable cloneSinger(T cloneable) {
+        return cloneable.createClone().createClone().createClone().createClone();
+
         /*
         Look at that ugly cast! Why is it here?
         Delete '(Cloneable)' and read error description.

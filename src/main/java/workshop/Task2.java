@@ -1,5 +1,8 @@
 package workshop;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Generics
  * <p>
@@ -11,18 +14,29 @@ package workshop;
  *
  * @author Wojciech Makiela
  */
-public class Task2<T> {
+public class Task2<T, S> {
 
     // TODO - T and S fields
     private final T myFieldOfTypeT;
+    private final S myFieldOfTypeS;
 
 
     // TODO - fix constructor - accept 2 variables - T and S
 
-    public Task2(T varOfTypeT) {
+    public Task2(T varOfTypeT, S varOfTypeS) {
         // TODO - assign variables passed to constructor to fields
         this.myFieldOfTypeT = varOfTypeT;
+        this.myFieldOfTypeS = varOfTypeS;
+        
     }
+
+    public static void main(String[] args) {
+        test();
+    }
+
+
+
+
 
     /*
     So what happened here?
@@ -98,4 +112,42 @@ public class Task2<T> {
 
 
      */
+
+    public static class Bundle<U, V>{
+
+        private final U myFieldOfTypeU;
+        private final V myFieldOfTypeV;
+        private List<String> strings;
+
+
+        public Bundle(U myFieldOfTypeU, V myFieldOfTypeV, List<String> strings) {
+            this.myFieldOfTypeU = myFieldOfTypeU;
+            this.myFieldOfTypeV = myFieldOfTypeV;
+
+        }
+
+        public U getMyFieldOfTypeU() {
+            return myFieldOfTypeU;
+        }
+
+        public V getMyFieldOfTypeV() {
+            return myFieldOfTypeV;
+        }
+
+        public List<String> getStrings() {
+            return strings;
+        }
+    }
+
+    public static void test() {
+        List<String> strings = Arrays.asList("a", "b", "c");
+        Bundle<String, Integer> bundle = new Bundle("first", 2, strings);
+
+        assert bundle.getMyFieldOfTypeU().equals("first");
+        assert bundle.getMyFieldOfTypeV() == 2;
+        assert strings == bundle.getStrings();
+    }
+
+
+
 }
