@@ -49,16 +49,18 @@ public class Task4 {
         Elvis can implement Cloneable<String> and would still work
         You can fix that by using 'extends' keyword!
 
-        If you define Cloneable as 'Cloneable<T extends Cloneable>, You will be sure that createClone method
+        If you define Cloneable as 'Cloneable<T extends Cloneable>, You will be sure that `createClone` method
         won't return anything that is not Cloneable.
         This is the moment when You can modify interface Cloneable ;)
 
-        It makes sense to think, that if You createClone something, then createClone itself should be cloneable, doesn't it?
-            // This sentence is kinda complex. Feel free to read it again ;P
+        It makes sense to think, that if You `createClone` something, then created clone itself should be cloneable,
+        doesn't it?
 
         Once You update Cloneable, this ugly cast won't be necessary... but we are not done here yet!
         Below you can see an example of parametrized method (returnT(T t)).
-        You do that by defining new type (T) before return type.
+        You do that by defining new type (T) before return type. Please take a look at this method and its definition.
+
+
         Now. Once you know how to define type in method, and how to use extends keyword with generics
         fix 'cloneSinger' method.
         'cloneSinger' should accept only parameters that are subtype of 'Singer',

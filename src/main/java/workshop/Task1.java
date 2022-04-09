@@ -72,8 +72,6 @@ public class Task1 {
      * Before you start reading, make sure you have finished first 7 steps listed above class declaration
      * <p>
      * Now you should have 2 similar implementations. One that uses Generics, and one that does not.
-     * If you couldn't implement first method in plain Java4 style (because of reasons i guess),
-     * then feel free to copy-paste it from 'java4Code.txt' file available in resources folder.
      * <p>
      * Quick info: I'll keep talking about lists only, but same rules apply to all collections in java.
      * <p>
@@ -85,7 +83,7 @@ public class Task1 {
      * Generics allow us to define type of elements stored in list. Information about type allows compiler
      * to do checks for us in compile, effectively reducing number of class cast exceptions.
      * <p>
-     * How it works?
+     * How does it work?
      */
     private static void howItWorks() {
         // <String> tells compiler that we want to store only Strings in given list

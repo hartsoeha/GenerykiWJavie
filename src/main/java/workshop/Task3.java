@@ -3,7 +3,7 @@ package workshop;
 /**
  * Task 1 summary:
  *
- * As You have seen, by using generics we have a compile type check which prevents ClassCastExceptions
+ * As You have seen, by using generics we have a compile-time type check which prevents ClassCastExceptions
  * and removes the need for casting.
  *
  * The other advantage is to avoid code duplication.
@@ -27,10 +27,10 @@ public class Task3 {
         /*
         In task 1 you've created code in 'java 4 style'
         and project still compiles
-        Its because java is backwards compatible
+        It's because java is backwards compatible
 
         IMPORTANT: I have no coding for you in this section.
-        If you want, feel free to use 'javap -c' on your classes, in order to see java bytecode
+        If you want, feel free to use 'javap -c' on your Java4 and Java8 classes, in order to see java bytecode.
         Bytecode should be the same, or just slightly of (depends on your implementation).
 
         Why?
@@ -53,7 +53,7 @@ public class Task3 {
         This means that compilation will:
 
             Replace generic types with objects
-            Replace bounded types (More on these in a later sections) with the first bound class
+            Replace bounded types (More on these in a later section) with the first bound class
             Insert the equivalent of casts when retrieving generic objects.
 
         Or to put it in simpler way.

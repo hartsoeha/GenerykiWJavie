@@ -1,7 +1,7 @@
 package workshop;
 
 /**
- * Generics!1!!
+ * Generics
  * <p>
  * Below you have Task2 class. Make it Generic.
  * I want it to store 2 types. 'T' and 'S', that I can declare however I want.
@@ -25,13 +25,13 @@ public class Task2<T> {
     }
 
     /*
-    So what the function happened here?
+    So what happened here?
     Right now you should have a class Task2 that accepts two custom parameters of types <T, S>
     You have created 2 fields of types T and S, and initialized them in constructor.
     This allows us to store pair of any objects.
 
     When to use that?
-    Let's say you are creating Tic-tac-toe game (for example).
+    Let's say you are creating Tic-tac-toe game.
     In that game you might find pairing 'Player' and 'Symbol' objects very useful.
     To do that, you create new class PlayerSymbolPair.
     But then you think that you also want to have pairs of type 'Players' and 'TTTGame'.
@@ -44,7 +44,7 @@ public class Task2<T> {
     Luckily, with the power of generics you can create single class Pair<T, S> that will help you out!
     What a time to be alive!
 
-    If something will require changing its type, generify it!
+    If something requires changing its type, generify it!
 
     Next task for you:
     Create new class called 'Bundle'
@@ -78,10 +78,9 @@ public class Task2<T> {
     code that uses that type cannot know what type T is; and in fact,
     the point is that the code must work with any type in the place of T.
     That is why the class or method is said to be "generic".
-    Thus you cannot create an array of T since you cannot provide the component
+    Thus, you cannot create an array of T since you cannot provide the component
     type needed to create the array.
 
-    Whoa. That's a lot of knowledge. You're doing great! (I hope)
     Last one thing before we leave generic arrays alone. Even though you cannot
     create array of generic type, you can create array of Objects, and cast it.
     T[] ts = (T[]) new Object[10];

@@ -8,7 +8,7 @@ import java.util.List;
  * Generic Inheritance!
  * <p>
  * Now. We have army of Singers!
- * Lets find out what we can do with them!
+ * Let's find out what we can do with them.
  * <p>
  *
  * @author Wojciech Makiela
@@ -16,7 +16,7 @@ import java.util.List;
 public class Task5 {
 
     // Yeah. I know. Copy-paste development.
-    // BUT! New methods are were introduced! Take a look
+    // BUT! New methods were introduced! Take a look
     static class Singer {
         private String genre;
 
@@ -45,10 +45,11 @@ public class Task5 {
     }
 
     public static void main(String[] args) {
-        // Take a look at workWithSingers method. Uncomment lines 54 and 55 - see what happens
+        // Take a look at workWithSingers method.
         List<Singer> singers = Arrays.asList(new Singer("Rock"), new Singer("Blues"));
         workWithSingers(singers);
         List<ElvisPresley> presleyList = Arrays.asList(new ElvisPresley("Rock'n'Roll"));
+        //  Uncomment the line below and see what happens
 //        workWithSingers(presleyList);
 
         /*
@@ -59,7 +60,7 @@ public class Task5 {
             List<Integer> ints = Arrays.asList(1, 2);
             List<Number> nums = ints; // this is where compile error would happen, but keep lets going
             nums.add(3.14);
-            ints.toString().equals("1, 2, 3.14"); // whoops! A double in our its list! o.O
+            ints.toString().equals("1, 2, 3.14"); // whoops! A double in our ints list!
 
         Assigning list of ints to List<Number> variable will cause CompileError, because this might lead to
         breaking initial list -> list of ints having double in it.
@@ -83,8 +84,8 @@ public class Task5 {
         Here, we are specifying a list which could be of any type.
 
         Not quite what we wanted. 'workWithSingers' should accept only Singers, and now you can pass
-        any list and it will work. But now you can fix it easily, can't you?
-        HINT: extends keyword might be useful
+        any list, and it will work. But now you can fix it easily, can't you?
+        HINT: `extends` keyword might be useful
          */
     }
 }

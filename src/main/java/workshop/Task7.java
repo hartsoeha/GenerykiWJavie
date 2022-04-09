@@ -10,7 +10,7 @@ public class Task7 {
         2. What is Type Erasure?
         3. If a Generic Type is Omitted When Instantiating an Object, will the Code Still Compile?
         4. What is a Bounded Type Parameter? How can be Type Parameter Bounded?
-        5. Is it Possible to Declared a Multiple Bounded Type Parameter?
+        5. Is it Possible to Declare a Multiple Bounded Type Parameter?
         6. Will the following class compile? If not, why?
 
             public final class Algorithm {

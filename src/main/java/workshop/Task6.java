@@ -50,7 +50,7 @@ public class Task6 {
     public static void main(String[] args) {
 
         /*
-        We already had method that accepts any type of Singer
+        We already had a method that accepts any type of Singer
         Now, lets update the way it behaves.
          */
 
